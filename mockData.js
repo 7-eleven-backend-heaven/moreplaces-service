@@ -51,7 +51,7 @@ propertyImg: [
     "Need to sleep? Heres the place"
   ],
 
-  propertyTypes: [
+  propertyType: [
     "Entire Place",
     "Private Room",
     "Hotel Room",
