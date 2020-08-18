@@ -1,5 +1,5 @@
-module.exports = () => {
- let propertyImg = [
+module.exports = {
+propertyImg: [
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+4.00.14+PM.png",
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+4.51.26+PM.png",
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+4.51.55+PM.png",
@@ -22,9 +22,9 @@ module.exports = () => {
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+6.32.03+PM.png",
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+6.32.06+PM.png",
     "https://hackreactor5erfliesmoreplaces.s3-us-west-1.amazonaws.com/Screen+Shot+2020-08-07+at+6.32.09+PM.png"
-  ]
+  ],
 
-  let propertyDescription = [
+  propertyDescription: [
     "Beautiful room overlooking city",
     "Great place for family vacation",
     "Little summer get away home",
@@ -49,12 +49,12 @@ module.exports = () => {
     "Hot Spring Onsen",
     "Best place to stay at in the world!",
     "Need to sleep? Heres the place"
-  ]
+  ],
 
-  let propertyTypes = [
+  propertyType: [
     "Entire Place",
     "Private Room",
     "Hotel Room",
     "Shared Room"
-  ]
+  ],
 }
