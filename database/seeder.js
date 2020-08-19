@@ -1,8 +1,11 @@
 const faker = require('faker');
 const db = require('./index.js');
-const mockData = require('../mockData.js')
+const mongoose = require('mongoose');
+const mockData = require('../mockData.js');
 
+// let data = mongoose.connection;
 const seeder = () => {
+  // data.dropDatabase();
   for (let i = 0; i < 100; i++) {
     const newPlace = new db.relatedPlaces({
       propertyId: i,

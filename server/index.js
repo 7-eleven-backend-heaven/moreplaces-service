@@ -13,6 +13,7 @@ let logRequests = (req, res, next) => {
 }
 app.use(logRequests);
 app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.json());
 
 
 // create routes
