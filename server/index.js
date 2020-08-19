@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const db = require('../database/index.js');
 
-const PORT = 3013;
+const PORT = 3003;
 
 // create middleware
 let logRequests = (req, res, next) => {
