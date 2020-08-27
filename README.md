@@ -40,7 +40,8 @@
       "numOfRooms": "String",
       "rating": "Number",
       "numOfRatings": "Number",
-      "description": "String"
+      "description": "String",
+      "price": "Number"
     }
 ```
 
@@ -62,14 +63,15 @@
       "numOfRooms": "String",
       "rating": "Number",
       "numOfRatings": "Number",
-      "description": "String"
+      "description": "String",
+      "price": "Number"
     }
 ```
 
 ### Delete property
-  * DELETE `/property/{property_id}`
+  * DELETE `/property/{propertyId}`
 
 **Path Parameters:**
-  * `{property_id}` list id
+  * `{propertyId}` list id
 
 **Success Status Code:** `204`
