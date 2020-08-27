@@ -46,10 +46,10 @@
 ```
 
 ### Update Property
-  * PATCH `/property/{property_id}`
+  * PATCH `/property/{propertyId}`
 
 **Path Parameters:**
-  * `{property_id}` property id
+  * `{propertyId}` property id
 
 **Success Status Code:** `204`
 
@@ -72,6 +72,6 @@
   * DELETE `/property/{propertyId}`
 
 **Path Parameters:**
-  * `{propertyId}` list id
+  * `{propertyId}` property id
 
 **Success Status Code:** `204`
