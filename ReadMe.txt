@@ -1,1 +1,0 @@
-More Places component/modal
