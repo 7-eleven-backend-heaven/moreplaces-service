@@ -20,7 +20,8 @@
       "rating": "Number",
       "numOfRatings": "Number",
       "description": "String",
-      "price": "Number"
+      "price": "Number",
+      "savedListId": "Number"
     }
 ```
 
@@ -41,7 +42,8 @@
       "rating": "Number",
       "numOfRatings": "Number",
       "description": "String",
-      "price": "Number"
+      "price": "Number",
+      "savedListId": "Number"
     }
 ```
 
@@ -65,6 +67,7 @@
       "numOfRatings": "Number",
       "description": "String",
       "price": "Number",
+      "savedListId": "Number"
     }
 ```
 
