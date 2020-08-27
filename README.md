@@ -64,7 +64,7 @@
       "rating": "Number",
       "numOfRatings": "Number",
       "description": "String",
-      "price": "Number"
+      "price": "Number",
     }
 ```
 
