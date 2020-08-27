@@ -1,11 +1,10 @@
 ## Server API
 
 ### Get Property info
-  * GET `/property/{property_id}`
-  * GET `/properties`
+  * GET `/property/{propertyId}`
 
 **Path Parameters:**
-  * `{property_id}` property id
+  * `{propertyId}` property id
 
 **Success Status Code:** `200`
 
@@ -13,17 +12,20 @@
 
 ```json
     {
-      "id": "Number",
-      "name": "String",
-      "address": "String",
-      "phone": "String",
-      "website": "String",
-      "cost": "Number"
+      "propertyId": "Number",
+      "imageUrl": "String",
+      "isSuperhost": "Boolean",
+      "propertyType": "String",
+      "numOfRooms": "String",
+      "rating": "Number",
+      "numOfRatings": "Number",
+      "description": "String",
+      "price": "Number"
     }
 ```
 
-### Save to a List
-  * POST `/saved/{list_id}/{property_id}`
+### Add a property
+  * POST `/property/{propertyId}`
 
 **Success Status Code:** `201`
 
@@ -31,20 +33,22 @@
 
 ```json
     {
-      "name": "String",
-      "address": "String",
-      "phone": "String",
-      "website": "String",
-      "googleMap": "String location",
-      "cost": "Number"
+      "propertyId": "Number",
+      "imageUrl": "String",
+      "isSuperhost": "Boolean",
+      "propertyType": "String",
+      "numOfRooms": "String",
+      "rating": "Number",
+      "numOfRatings": "Number",
+      "description": "String"
     }
 ```
 
-### Update List
-  * PATCH `/saved/{list_id}`
+### Update Property
+  * PATCH `/property/{property_id}`
 
 **Path Parameters:**
-  * `list_id` list id
+  * `{property_id}` property id
 
 **Success Status Code:** `204`
 
@@ -52,18 +56,20 @@
 
 ```json
     {
-      "name": "String",
-      "address": "String",
-      "phone": "String",
-      "website": "String",
-      "cost": "Number"
+      "imageUrl": "String",
+      "isSuperhost": "Boolean",
+      "propertyType": "String",
+      "numOfRooms": "String",
+      "rating": "Number",
+      "numOfRatings": "Number",
+      "description": "String"
     }
 ```
 
-### Delete from list
-  * DELETE `/saved/{list_id}`
+### Delete property
+  * DELETE `/property/{property_id}`
 
 **Path Parameters:**
-  * `{list_id}` list id
+  * `{property_id}` list id
 
 **Success Status Code:** `204`
