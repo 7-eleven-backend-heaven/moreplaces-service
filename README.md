@@ -1,10 +1,10 @@
 ## Server API
 
 ### Get Property info
-  * GET `/property/{propertyId}`
+  * GET `/property/:propertyId`
 
 **Path Parameters:**
-  * `{propertyId}` property id
+  * `:propertyId` property id
 
 **Success Status Code:** `200`
 
@@ -19,14 +19,14 @@
       "numOfRooms": "String",
       "rating": "Number",
       "numOfRatings": "Number",
-      "description": "String",
+      "caption": "String",
       "price": "Number",
       "savedListId": "Number"
     }
 ```
 
 ### Add a property
-  * POST `/property/{propertyId}`
+  * POST `/property/:propertyId`
 
 **Success Status Code:** `201`
 
@@ -41,17 +41,17 @@
       "numOfRooms": "String",
       "rating": "Number",
       "numOfRatings": "Number",
-      "description": "String",
+      "caption": "String",
       "price": "Number",
       "savedListId": "Number"
     }
 ```
 
 ### Update Property
-  * PATCH `/property/{propertyId}`
+  * PATCH `/properties/:propertyId`
 
 **Path Parameters:**
-  * `{propertyId}` property id
+  * `:propertyId` property id
 
 **Success Status Code:** `204`
 
@@ -65,16 +65,16 @@
       "numOfRooms": "String",
       "rating": "Number",
       "numOfRatings": "Number",
-      "description": "String",
+      "caption": "String",
       "price": "Number",
       "savedListId": "Number"
     }
 ```
 
 ### Delete property
-  * DELETE `/property/{propertyId}`
+  * DELETE `/property/:propertyId`
 
 **Path Parameters:**
-  * `{propertyId}` property id
+  * `:propertyId` property id
 
 **Success Status Code:** `204`
