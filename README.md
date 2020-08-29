@@ -1,4 +1,4 @@
-## Server API
+## More Places API
 
 ### Get Property info
   * GET `/property/{propertyId}`
