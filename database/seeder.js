@@ -6,27 +6,27 @@ const type = ['Entire Villa', 'Entire Apartment', 'Entire Place', 'Entire Castle
 const rooms = [2, 3, 4, 5];
 
 const description = [
-  "Beautiful room overlooking city",
-  "Great place for family vacation",
-  "Little summer get away home",
-  "Private place to relax",
-  "Historic house in center of city",
-  "Great location in middle of attractions",
-  "Lovely place for relaxation",
-  "Luxury hide-away",
-  "Hakuna Matata - close to downtown",
-  "Professionally designed place!",
-  "Nantucket Style Beach House",
-  "Very large backyard with grill and swings!",
-  "House w/big yard!",
-  "Pet friendly bungalow",
-  "Entire Guesthouse fits plenty",
-]
+  'Beautiful room overlooking city',
+  'Great place for family vacation',
+  'Little summer get away home',
+  'Private place to relax',
+  'Historic house in center of city',
+  'Great location in middle of attractions',
+  'Lovely place for relaxation',
+  'Luxury hide-away',
+  'Hakuna Matata - close to downtown',
+  'Professionally designed place!',
+  'Nantucket Style Beach House',
+  'Very large backyard with grill and swings!',
+  'House w/big yard!',
+  'Pet friendly bungalow',
+  'Entire Guesthouse fits plenty',
+];
 
 const propertiesSeeder = (entries) => {
   let dataString = '';
 
-  for (let i = 0; i < entries; i++) {
+  for (let i = 1; i <= entries; i += 1) {
     const imageUrl = faker.image.imageUrl();
     const superhost = faker.random.boolean();
     const propertyType = type[i % 6];
@@ -49,4 +49,4 @@ const propertiesSeeder = (entries) => {
   });
 };
 
-propertiesSeeder(50);
+propertiesSeeder(500);
