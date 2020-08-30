@@ -77,6 +77,7 @@ const propertiesGenerator = (entries) => {
 
     dataString += `${imageUrl},${superhost},${propertyType},${numOfRooms},${rating},${numOfRatings},${caption},${price},${list} --${time}-${ms}\n`;
   }
+
   return new Promise((resolve, reject) => {
     fs.writeFile('propertiesData.csv', dataString, (err) => {
       if (err) {
