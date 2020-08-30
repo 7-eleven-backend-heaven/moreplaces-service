@@ -11,13 +11,13 @@ app.use(express.static(dist));
 app.use(express.json());
 
 // ROUTES
-app.get('/property/{propertyId}');
+app.get('/property/:propertyId');
 
-app.post('/property/{propertyId}');
+app.post('/property/:propertyId');
 
-app.put('/property/{propertyId}');
+app.put('/property/:propertyId');
 
-app.delete('/property/{propertyId}');
+app.delete('/property/:propertyId');
 
 app.listen(PORT, (err) => {
   if (err) {
