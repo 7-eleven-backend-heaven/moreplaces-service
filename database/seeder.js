@@ -9,7 +9,7 @@ const boolean = [true, false, false];
 const avg = [3.77, 4.55, 4.30, 4.27, 3.95, 4.88, 4.10, 4.65, 4.44, 3.86];
 const ratings = [77, 100, 186, 290, 350, 438, 470, 520, 632, 759];
 const amount = [190, 236, 250, 375, 420, 488, 570, 633, 745, 800];
-const saved = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const saved = [1, 2, 3, 4, null, 5, 6, null, 7];
 
 const description = [
   'Beautiful room overlooking city',
@@ -58,45 +58,53 @@ const images = [
   'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/lobbybar.jpg',
 ];
 
-const propertiesGenerator = (entries) => {
-  let dataString = '';
+const propertiesGenerator = (writer, entries, callback) => {
+  const start = new Date();
+  console.log('properties:', start);
 
-  for (let i = 1; i <= entries; i += 1) {
-    const imageUrl = images[i % 26];
-    const superhost = boolean[i % 3];
-    const propertyType = type[i % 6];
-    const numOfRooms = rooms[i % 4];
-    const rating = avg[i % 10];
-    const numOfRatings = ratings[i % 10];
-    const caption = description[i % 15];
-    const price = `$${amount[i % 10]}`;
-    const list = saved[i % 10];
+  let id = 0;
 
-    const time = new Date();
-    const ms = time.getMilliseconds();
+  function write() {
+    let ok = true;
+    do {
+      entries -= 1;
+      id += 1;
+      const imageUrl = images[entries % 26];
+      const superhost = boolean[entries % 3];
+      const propertyType = type[entries % 6];
+      const numOfRooms = rooms[entries % 4];
+      const rating = avg[entries % 10];
+      const numOfRatings = ratings[entries % 10];
+      const caption = description[entries % 15];
+      const price = `$${amount[entries % 10]}`;
+      const list = saved[entries % 9];
 
-    dataString += `${imageUrl},${superhost},${propertyType},${numOfRooms},${rating},${numOfRatings},${caption},${price},${list} --${time}-${ms}\n`;
-  }
+      const dataString = `${id},${imageUrl},${superhost},${propertyType},${numOfRooms},${rating},${numOfRatings},${caption},${price},${list}\n`;
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile('propertiesData.csv', dataString, (err) => {
-      if (err) {
-        reject(err);
+      if (entries === 0) {
+        writer.write(dataString, 'utf-8', callback);
       } else {
-        resolve();
+        ok = writer.write(dataString, 'utf-8');
       }
-    });
-  });
+    } while (entries > 0 && ok);
+    if (entries > 0) {
+      writer.once('drain', write);
+    }
+  }
+  write();
 };
 
 // DATA FOR SAVED LIST
 const location = ['Oakland', 'Los Angeles', 'New York', 'London', 'Ibiza', 'Paris', 'Tokyo'];
 
 const savedListGenerator = (entries) => {
+  const start = new Date();
+  console.log('saved:', start);
+
   let data = '';
 
   for (let i = 1; i <= entries; i += 1) {
-    const city = location[i % 7];
+    const city = location[i - 1];
     data += `${i},${city}\n`;
   }
 
@@ -113,42 +121,54 @@ const savedListGenerator = (entries) => {
 
 // DATA FOR RELATED PROPERTIES
 /* Each property entry should have 12 related properties */
-const relatedGenerator = (entries) => {
-  let data = '';
-  for (let i = 1; i <= entries; i += 1) {
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-    data += `${i},${faker.random.number({ min: 1, max: 1000 })}\n`;
-  }
+const relatedGenerator = (writer, entries, callback) => {
+  const start = new Date();
+  console.log('related:', start);
 
-  return new Promise((resolve, reject) => {
-    fs.writeFile('relatedData.csv', data, (err) => {
-      if (err) {
-        reject(err);
+  let id = 0;
+
+  function write() {
+    let ok = true;
+    do {
+      entries -= 1;
+      id += 1;
+
+      let data = `${id},${faker.random.number({ min: 1, max: 100 })}\n`;
+      data += `${id},${faker.random.number({ min: 200, max: 300 })}\n`;
+      data += `${id},${faker.random.number({ min: 400, max: 500 })}\n`;
+      data += `${id},${faker.random.number({ min: 600, max: 700 })}\n`;
+      data += `${id},${faker.random.number({ min: 800, max: 900 })}\n`;
+      data += `${id},${faker.random.number({ min: 1000, max: 1100 })}\n`;
+      data += `${id},${faker.random.number({ min: 1200, max: 1300 })}\n`;
+      data += `${id},${faker.random.number({ min: 1400, max: 1500 })}\n`;
+      data += `${id},${faker.random.number({ min: 1700, max: 1800 })}\n`;
+      data += `${id},${faker.random.number({ min: 1900, max: 2000 })}\n`;
+      data += `${id},${faker.random.number({ min: 2100, max: 2200 })}\n`;
+      data += `${id},${faker.random.number({ min: 5000, max: 6000 })}\n`;
+
+      if (entries === 0) {
+        writer.write(data, 'utf-8', callback);
       } else {
-        resolve();
+        ok = writer.write(data, 'utf-8');
       }
-    });
-  });
+    } while (entries > 0 && ok);
+    if (entries > 0) {
+      writer.once('drain', write);
+    }
+  }
+  write();
 };
 
-propertiesGenerator(1000)
-  .then(() => { console.log('properties data success'); })
-  .catch(() => { console.log('proeprties data failed'); });
+const writeProperties = fs.createWriteStream('propertiesData.csv');
+propertiesGenerator(writeProperties, 10, () => {
+  console.log('properties data success:', new Date());
+});
 
-savedListGenerator(1000)
-  .then(() => { console.log('saved data success'); })
-  .catch(() => { console.log('daved data failed'); });
+const writeRelated = fs.createWriteStream('relatedData.csv');
+relatedGenerator(writeRelated, 10, () => {
+  console.log('related data success:', new Date());
+});
 
-relatedGenerator(2)
-  .then(() => { console.log('related data success'); })
-  .catch(() => { console.log('related data failed'); });
+// savedListGenerator(7)
+//   .then(() => { console.log('saved data success:', new Date()); })
+//   .catch(() => { console.log('daved data failed'); });
