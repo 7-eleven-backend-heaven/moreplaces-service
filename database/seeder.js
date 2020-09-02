@@ -9,7 +9,7 @@ const boolean = [true, false, false];
 const avg = [3.77, 4.55, 4.30, 4.27, 3.95, 4.88, 4.10, 4.65, 4.44, 3.86];
 const ratings = [77, 100, 186, 290, 350, 438, 470, 520, 632, 759];
 const amount = [190, 236, 250, 375, 420, 488, 570, 633, 745, 800];
-const saved = [1, 2, 3, 4, null, 5, 6, null, 7];
+const saved = [1, 2, 3, 4, '', 5, 6, '', 7];
 
 const description = [
   'Beautiful room overlooking city',
@@ -66,28 +66,30 @@ const propertiesGenerator = (writer, entries, callback) => {
 
   function write() {
     let ok = true;
+    let i = entries;
+
     do {
-      entries -= 1;
+      i -= 1;
       id += 1;
-      const imageUrl = images[entries % 26];
-      const superhost = boolean[entries % 3];
-      const propertyType = type[entries % 6];
-      const numOfRooms = rooms[entries % 4];
-      const rating = avg[entries % 10];
-      const numOfRatings = ratings[entries % 10];
-      const caption = description[entries % 15];
-      const price = `$${amount[entries % 10]}`;
-      const list = saved[entries % 9];
+      const caption = description[i % 15];
+      const imageUrl = images[i % 26];
+      const superhost = boolean[i % 3];
+      const numOfRatings = ratings[i % 10];
+      const numOfRooms = rooms[i % 4];
+      const price = `$${amount[i % 10]}`;
+      const propertyType = type[i % 6];
+      const rating = avg[i % 10];
+      const list = saved[i % 9];
 
-      const dataString = `${id},${imageUrl},${superhost},${propertyType},${numOfRooms},${rating},${numOfRatings},${caption},${price},${list}\n`;
+      const dataString = `${id},${caption},${imageUrl},${superhost},${numOfRatings},${numOfRooms},${price},${propertyType},${rating},${list}\n`;
 
-      if (entries === 0) {
+      if (i === 0) {
         writer.write(dataString, 'utf-8', callback);
       } else {
         ok = writer.write(dataString, 'utf-8');
       }
-    } while (entries > 0 && ok);
-    if (entries > 0) {
+    } while (i > 0 && ok);
+    if (i > 0) {
       writer.once('drain', write);
     }
   }
@@ -101,7 +103,7 @@ const savedListGenerator = (entries) => {
   const start = new Date();
   console.log('saved:', start);
 
-  let data = '';
+  let data = 'listid,listname\n';
 
   for (let i = 1; i <= entries; i += 1) {
     const city = location[i - 1];
@@ -133,18 +135,18 @@ const relatedGenerator = (writer, entries, callback) => {
       entries -= 1;
       id += 1;
 
-      let data = `${id},${faker.random.number({ min: 1, max: 100 })}\n`;
-      data += `${id},${faker.random.number({ min: 200, max: 300 })}\n`;
-      data += `${id},${faker.random.number({ min: 400, max: 500 })}\n`;
-      data += `${id},${faker.random.number({ min: 600, max: 700 })}\n`;
-      data += `${id},${faker.random.number({ min: 800, max: 900 })}\n`;
-      data += `${id},${faker.random.number({ min: 1000, max: 1100 })}\n`;
-      data += `${id},${faker.random.number({ min: 1200, max: 1300 })}\n`;
-      data += `${id},${faker.random.number({ min: 1400, max: 1500 })}\n`;
-      data += `${id},${faker.random.number({ min: 1700, max: 1800 })}\n`;
-      data += `${id},${faker.random.number({ min: 1900, max: 2000 })}\n`;
-      data += `${id},${faker.random.number({ min: 2100, max: 2200 })}\n`;
-      data += `${id},${faker.random.number({ min: 5000, max: 6000 })}\n`;
+      let data = `${id},${faker.random.number({ min: 1, max: 500 })}\n`;
+      data += `${id},${faker.random.number({ min: 501, max: 1000 })}\n`;
+      data += `${id},${faker.random.number({ min: 1001, max: 1500 })}\n`;
+      data += `${id},${faker.random.number({ min: 1501, max: 2000 })}\n`;
+      data += `${id},${faker.random.number({ min: 2001, max: 2500 })}\n`;
+      data += `${id},${faker.random.number({ min: 2501, max: 3000 })}\n`;
+      data += `${id},${faker.random.number({ min: 3001, max: 3500 })}\n`;
+      data += `${id},${faker.random.number({ min: 3501, max: 4000 })}\n`;
+      data += `${id},${faker.random.number({ min: 4001, max: 4500 })}\n`;
+      data += `${id},${faker.random.number({ min: 4501, max: 5000 })}\n`;
+      data += `${id},${faker.random.number({ min: 5001, max: 5500 })}\n`;
+      data += `${id},${faker.random.number({ min: 5501, max: 6000 })}\n`;
 
       if (entries === 0) {
         writer.write(data, 'utf-8', callback);
@@ -159,16 +161,22 @@ const relatedGenerator = (writer, entries, callback) => {
   write();
 };
 
+const propHeader = 'propertyid,caption,imageurl,issuperhost,numofratings,numofrooms,price,propertytype,rating,savedlistid\n';
+
 const writeProperties = fs.createWriteStream('propertiesData.csv');
+writeProperties.write(propHeader);
 propertiesGenerator(writeProperties, 10, () => {
   console.log('properties data success:', new Date());
 });
 
+const relatedHeader = 'mainpropid,relatedid\n';
+
 const writeRelated = fs.createWriteStream('relatedData.csv');
+writeRelated.write(relatedHeader);
 relatedGenerator(writeRelated, 10, () => {
   console.log('related data success:', new Date());
 });
 
-// savedListGenerator(7)
-//   .then(() => { console.log('saved data success:', new Date()); })
-//   .catch(() => { console.log('daved data failed'); });
+savedListGenerator(7)
+  .then(() => { console.log('saved data success:', new Date()); })
+  .catch(() => { console.log('daved data failed'); });

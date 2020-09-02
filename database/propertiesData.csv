@@ -1,10 +1,11 @@
-1,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/LivingArea1.jpg,true,Entire Castle,3,3.86,759,Professionally designed place!,$800,1
-2,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Kitchen1.jpg,false,Entire Place,2,4.44,632,Hakuna Matata - close to downtown,$745,7
-3,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Couch1.jpg,false,Entire Apartment,5,4.65,520,Luxury hide-away,$633,null
-4,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Patio1.jpg,true,Entire Villa,4,4.1,470,Lovely place for relaxation,$570,6
-5,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Outside1.jpg,false,Private Room,3,4.88,438,Great location in middle of attractions,$488,5
-6,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bed1.jpg,false,Private House,2,3.95,350,Historic house in center of city,$420,null
-7,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom2.jpg,true,Entire Castle,5,4.27,290,Private place to relax,$375,4
-8,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom1.jpg,false,Entire Place,4,4.3,186,Little summer get away home,$250,3
-9,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom2.jpg,false,Entire Apartment,3,4.55,100,Great place for family vacation,$236,2
-10,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom1.jpg,true,Entire Villa,2,3.77,77,Beautiful room overlooking city,$190,1
+propertyid,caption,imageurl,issuperhost,numofratings,numofrooms,price,propertytype,rating,savedlistid
+1,Professionally designed place!,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/LivingArea1.jpg,true,759,3,$800,Entire Castle,3.86,1
+2,Hakuna Matata - close to downtown,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Kitchen1.jpg,false,632,2,$745,Entire Place,4.44,7
+3,Luxury hide-away,https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Couch1.jpg,false,520,5,$633,Entire Apartment,4.65,
+4,Lovely place for relaxation,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Patio1.jpg,true,470,4,$570,Entire Villa,4.1,6
+5,Great location in middle of attractions,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Outside1.jpg,false,438,3,$488,Private Room,4.88,5
+6,Historic house in center of city,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bed1.jpg,false,350,2,$420,Private House,3.95,
+7,Private place to relax,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom2.jpg,true,290,5,$375,Entire Castle,4.27,4
+8,Little summer get away home,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom1.jpg,false,186,4,$250,Entire Place,4.3,3
+9,Great place for family vacation,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom2.jpg,false,100,3,$236,Entire Apartment,4.55,2
+10,Beautiful room overlooking city,https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom1.jpg,true,77,2,$190,Entire Villa,3.77,1

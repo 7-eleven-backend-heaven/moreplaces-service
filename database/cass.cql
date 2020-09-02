@@ -5,26 +5,24 @@ CREATE KEYSPACE moreplaces WITH replication = {'class':'SimpleStrategy','replica
 USE moreplaces;
 
 CREATE TABLE savedList (
-  listId int,
+  listId int PRIMARY KEY,
   name text,
-  PRIMARY KEY (listId)
 );
 
 CREATE TABLE properties (
-  propertyId int,
+  propertyId int PRIMARY KEY,
   imageUrl text,
   isSuperhost boolean,
   propertyType text,
   numOfRooms int,
-  rating int,
+  rating decimal,
   numOfRatings int,
   caption text,
-  price int,
+  price text,
   savedListId int,
-  PRIMARY KEY (propertyId)
 );
 
 CREATE TABLE related (
-  mainPropId int,
+  mainPropId int PRIMARY KEY,
   relatedPropId int
 );
