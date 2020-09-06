@@ -3,8 +3,8 @@ CREATE DATABASE moreplaces;
 
 \c moreplaces;
 
-DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS related;
+DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS savedlists;
 
 CREATE TABLE savedlists (

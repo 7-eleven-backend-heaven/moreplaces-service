@@ -134,18 +134,18 @@ const relatedGenerator = (writer, entries, callback) => {
       entries -= 1;
       id += 1;
 
-      let data = `${id},${faker.random.number({ min: 1, max: 500 })}\n`;
-      data += `${id},${faker.random.number({ min: 501, max: 1000 })}\n`;
-      data += `${id},${faker.random.number({ min: 1001, max: 1500 })}\n`;
-      data += `${id},${faker.random.number({ min: 1501, max: 2000 })}\n`;
-      data += `${id},${faker.random.number({ min: 2001, max: 2500 })}\n`;
-      data += `${id},${faker.random.number({ min: 2501, max: 3000 })}\n`;
-      data += `${id},${faker.random.number({ min: 3001, max: 3500 })}\n`;
-      data += `${id},${faker.random.number({ min: 3501, max: 4000 })}\n`;
-      data += `${id},${faker.random.number({ min: 4001, max: 4500 })}\n`;
-      data += `${id},${faker.random.number({ min: 4501, max: 5000 })}\n`;
-      data += `${id},${faker.random.number({ min: 5001, max: 5500 })}\n`;
-      data += `${id},${faker.random.number({ min: 5501, max: 6000 })}\n`;
+      let data = `${id},${faker.random.number({ min: 1, max: 1000 })}\n`;
+      data += `${id},${faker.random.number({ min: 1001, max: 5000 })}\n`;
+      data += `${id},${faker.random.number({ min: 5001, max: 10000 })}\n`;
+      data += `${id},${faker.random.number({ min: 10001, max: 30000 })}\n`;
+      data += `${id},${faker.random.number({ min: 30001, max: 50000 })}\n`;
+      data += `${id},${faker.random.number({ min: 50001, max: 100000 })}\n`;
+      data += `${id},${faker.random.number({ min: 100001, max: 200000 })}\n`;
+      data += `${id},${faker.random.number({ min: 200001, max: 500000 })}\n`;
+      data += `${id},${faker.random.number({ min: 500001, max: 1000000 })}\n`;
+      data += `${id},${faker.random.number({ min: 1000001, max: 3000000 })}\n`;
+      data += `${id},${faker.random.number({ min: 3000001, max: 5000000 })}\n`;
+      data += `${id},${faker.random.number({ min: 5000001, max: 10000000 })}\n`;
 
       if (entries === 0) {
         writer.write(data, 'utf-8', callback);
