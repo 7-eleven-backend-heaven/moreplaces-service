@@ -66,30 +66,29 @@ const propertiesGenerator = (writer, entries, callback) => {
 
   function write() {
     let ok = true;
-    let i = entries;
 
     do {
-      i -= 1;
+      entries -= 1;
       id += 1;
-      const caption = description[i % 15];
-      const imageUrl = images[i % 26];
-      const superhost = boolean[i % 3];
-      const numOfRatings = ratings[i % 10];
-      const numOfRooms = rooms[i % 4];
-      const price = `$${amount[i % 10]}`;
-      const propertyType = type[i % 6];
-      const rating = avg[i % 10];
-      const list = saved[i % 9];
+      const caption = description[entries % 15];
+      const imageUrl = images[entries % 26];
+      const superhost = boolean[entries % 3];
+      const numOfRatings = ratings[entries % 10];
+      const numOfRooms = rooms[entries % 4];
+      const price = `$${amount[entries % 10]}`;
+      const propertyType = type[entries % 6];
+      const rating = avg[entries % 10];
+      const list = saved[entries % 9];
 
-      const dataString = `${id},${caption},${imageUrl},${superhost},${numOfRatings},${numOfRooms},${price},${propertyType},${rating},${list}\n`;
+      const dataString = `${id},"${caption}","${imageUrl}",${superhost},${numOfRatings},${numOfRooms},"${price}","${propertyType}",${rating},${list}\n`;
 
-      if (i === 0) {
+      if (entries === 0) {
         writer.write(dataString, 'utf-8', callback);
       } else {
         ok = writer.write(dataString, 'utf-8');
       }
-    } while (i > 0 && ok);
-    if (i > 0) {
+    } while (entries > 0 && ok);
+    if (entries > 0) {
       writer.once('drain', write);
     }
   }
@@ -161,11 +160,11 @@ const relatedGenerator = (writer, entries, callback) => {
   write();
 };
 
-const propHeader = 'propertyid,caption,imageurl,issuperhost,numofratings,numofrooms,price,propertytype,rating,savedlistid\n';
+const propHeader = 'propertyid,description,imageurl,issuperhost,numofratings,numofrooms,price,propertytype,rating,savedlistid\n';
 
 const writeProperties = fs.createWriteStream('propertiesData.csv');
 writeProperties.write(propHeader);
-propertiesGenerator(writeProperties, 10, () => {
+propertiesGenerator(writeProperties, 10000000, () => {
   console.log('properties data success:', new Date());
 });
 
@@ -173,7 +172,7 @@ const relatedHeader = 'mainpropid,relatedid\n';
 
 const writeRelated = fs.createWriteStream('relatedData.csv');
 writeRelated.write(relatedHeader);
-relatedGenerator(writeRelated, 10, () => {
+relatedGenerator(writeRelated, 10000000, () => {
   console.log('related data success:', new Date());
 });
 

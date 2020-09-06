@@ -3,18 +3,18 @@ CREATE DATABASE moreplaces;
 
 \c moreplaces;
 
-DROP TABLE IF EXISTS savedList;
 DROP TABLE IF EXISTS properties;
 DROP TABLE IF EXISTS related;
+DROP TABLE IF EXISTS savedlists;
 
-CREATE TABLE savedList (
+CREATE TABLE savedlists (
   listid SERIAL NOT NULL PRIMARY KEY,
   listname VARCHAR NOT NULL
 );
 
 CREATE TABLE properties (
   propertyid SERIAL NOT NULL PRIMARY KEY,
-  caption VARCHAR,
+  description VARCHAR,
   imageurl VARCHAR NOT NULL,
   issuperhost BOOLEAN NOT NULL,
   numofratings INT,
@@ -44,7 +44,7 @@ CREATE TABLE related (
 
 SELECT NOW()::TIME;
 
-\COPY savedList FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/savedData.csv' DELIMITER ',' CSV HEADER;
+\COPY savedlists FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/savedData.csv' DELIMITER ',' CSV HEADER;
 
 \COPY properties FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/propertiesData.csv' DELIMITER ',' CSV HEADER;
 
@@ -52,8 +52,8 @@ SELECT NOW()::TIME;
 
 SELECT NOW()::TIME;
 
-ALTER TABLE properties ADD CONSTRAINT fk_list FOREIGN KEY (savedListId) REFERENCES savedList(listId) ON DELETE SET NULL;
+ALTER TABLE properties ADD CONSTRAINT fk_list FOREIGN KEY (savedlistid) REFERENCES savedlists(listid) ON DELETE SET NULL;
 
-ALTER TABLE related ADD CONSTRAINT fk_main FOREIGN KEY (mainPropId) REFERENCES properties(propertyId) ON DELETE CASCADE;
+CREATE INDEX mainprop ON related (mainpropid);
 
-ALTER TABLE related ADD CONSTRAINT fk_related FOREIGN KEY (relatedId) REFERENCES properties(propertyId) ON DELETE CASCADE;
+ALTER TABLE related ADD CONSTRAINT fk_related FOREIGN KEY (relatedid) REFERENCES properties(propertyid) ON DELETE CASCADE;

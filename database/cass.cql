@@ -4,25 +4,35 @@ CREATE KEYSPACE moreplaces WITH replication = {'class':'SimpleStrategy','replica
 
 USE moreplaces;
 
-CREATE TABLE savedList (
-  listId int PRIMARY KEY,
-  name text,
+CREATE TABLE savedlists (
+  listid int,
+  listname text,
+  PRIMARY KEY (listid)
+);
+
+CREATE TABLE relatedids (
+  mainpropid int,
+  relatedid list<int>,
+  PRIMARY KEY (mainpropid)
 );
 
 CREATE TABLE properties (
-  propertyId int PRIMARY KEY,
-  imageUrl text,
-  isSuperhost boolean,
-  propertyType text,
-  numOfRooms int,
-  rating decimal,
-  numOfRatings int,
-  caption text,
+  propertyid int,
+  description text,
+  imageurl text,
+  issuperhost boolean,
+  numofratings int,
+  numofrooms int,
   price text,
-  savedListId int,
+  propertytype text,
+  rating decimal,
+  savedlistid int,
+  PRIMARY KEY (propertyid)
 );
 
-CREATE TABLE related (
-  mainPropId int PRIMARY KEY,
-  relatedPropId int
-);
+COPY savedlists FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/savedData.csv' WITH HEADER=TRUE;
+
+COPY relatedids FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/cassRelated.csv' WITH DELIMITER=';' AND HEADER=TRUE;
+
+COPY properties FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/propertiesData.csv' WITH HEADER=TRUE;
+

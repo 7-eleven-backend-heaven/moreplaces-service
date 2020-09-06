@@ -1,112 +1,38 @@
 const fs = require('fs');
 const faker = require('faker');
 
-// DATA FOR PROPERTIES TABLE
-const type = ['Entire Villa', 'Entire Apartment', 'Entire Place', 'Entire Castle', 'Private House', 'Private Room'];
-
-const rooms = [2, 3, 4, 5];
-const boolean = [true, false, false];
-const avg = [3.77, 4.55, 4.30, 4.27, 3.95, 4.88, 4.10, 4.65, 4.44, 3.86];
-const ratings = [77, 100, 186, 290, 350, 438, 470, 520, 632, 759];
-const amount = [190, 236, 250, 375, 420, 488, 570, 633, 745, 800];
-const saved = [1, 2, 3, 4, '', 5, 6, '', 7];
-
-const description = [
-  'Beautiful room overlooking city',
-  'Great place for family vacation',
-  'Little summer get away home',
-  'Private place to relax',
-  'Historic house in center of city',
-  'Great location in middle of attractions',
-  'Lovely place for relaxation',
-  'Luxury hide-away',
-  'Hakuna Matata - close to downtown',
-  'Professionally designed place!',
-  'Nantucket Style Beach House',
-  'Very large backyard with grill and swings!',
-  'House w/big yard!',
-  'Pet friendly bungalow',
-  'Entire Guesthouse fits plenty',
-];
-
-const images = [
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/AreaRoom2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bathroom2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Bed1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Outside1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Hawaii+Set+1/Patio1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Couch1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/Kitchen1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/LivingArea1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/LivingArea2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/PoolArea1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/PoolArea2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Miami+Set/WindowView1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Jamaica/bedroom.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Jamaica/bedroom2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Jamaica/terrace.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Jamaica/terrace2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/Jamaica/diningarea.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/bedroom1.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/bedroom2.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/livingroom.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/bathroom.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/outsideview.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/roofterrace.jpg',
-  'https://propertygallery.s3-us-west-1.amazonaws.com/newyork/lobbybar.jpg',
-];
-
-const propertiesGenerator = (writer, entries, callback) => {
+// DATA FOR RELATED PROPERTIES
+/* Each property entry should have 12 related properties */
+const relatedGenerator = (writer, entries, callback) => {
   const start = new Date();
-  console.log('properties:', start);
+  console.log('related:', start);
 
   let id = 0;
 
   function write() {
     let ok = true;
-
     do {
       entries -= 1;
       id += 1;
+      const prop1 = faker.random.number({ min: 1, max: 500 });
+      const prop2 = faker.random.number({ min: 501, max: 1000 });
+      const prop3 = faker.random.number({ min: 1001, max: 1500 });
+      const prop4 = faker.random.number({ min: 1501, max: 2000 });
+      const prop5 = faker.random.number({ min: 2001, max: 2500 });
+      const prop6 = faker.random.number({ min: 2501, max: 3000 });
+      const prop7 = faker.random.number({ min: 3001, max: 3500 });
+      const prop8 = faker.random.number({ min: 3501, max: 4000 });
+      const prop9 = faker.random.number({ min: 4001, max: 4500 });
+      const prop10 = faker.random.number({ min: 4501, max: 5000 });
+      const prop11 = faker.random.number({ min: 5001, max: 5500 });
+      const prop12 = faker.random.number({ min: 5501, max: 6000 });
 
-      const generateRelated = () => {
-        const array = [];
-        for (let n = 0; n < 1; n++) {
-          let str = '';
-          str += `propertyid: ${faker.random.number({ min: 1, max: 500 })}, `;
-          str += `description: ${description[n % 15]}, `;
-          str += `imageurl: '${images[n % 26]}', `;
-          str += `issuperhost: ${boolean[n % 3]}, `;
-          str += `numofratings: ${ratings[n % 10]}, `;
-          str += `numofrooms: ${rooms[n % 4]}, `;
-          str += `price: $${amount[n % 10]}, `;
-          str += `propertytype: ${type[n % 6]}, `;
-          str += `rating: ${avg[n % 10]}, `;
-          str += `savedlistid: ${saved[n % 9]}`;
-          array.push(`{${str}}`);
-        }
-        return array;
-      };
-
-      const caption = description[entries % 15];
-      const imageUrl = images[entries % 26];
-      const superhost = boolean[entries % 3];
-      const numOfRatings = ratings[entries % 10];
-      const numOfRooms = rooms[entries % 4];
-      const price = `$${amount[entries % 10]}`;
-      const propertyType = type[entries % 6];
-      const rating = avg[entries % 10];
-      const list = saved[entries % 9];
-      const related = `[${generateRelated()}]`;
-
-      const dataString = `${id};${caption};${imageUrl};${superhost};${numOfRatings};${numOfRooms};${price};${propertyType};${rating};${related};${list}\n`;
+      const data = `${id};[${prop1}, ${prop2}, ${prop3}, ${prop4}, ${prop5}, ${prop6}, ${prop7}, ${prop8}, ${prop9}, ${prop10}, ${prop11}, ${prop12}]\n`;
 
       if (entries === 0) {
-        writer.write(dataString, 'utf-8', callback);
+        writer.write(data, 'utf-8', callback);
       } else {
-        ok = writer.write(dataString, 'utf-8');
+        ok = writer.write(data, 'utf-8');
       }
     } while (entries > 0 && ok);
     if (entries > 0) {
@@ -116,10 +42,9 @@ const propertiesGenerator = (writer, entries, callback) => {
   write();
 };
 
-const propHeader = 'propertyid;description;imageurl;issuperhost;numofratings;numofrooms;price;propertytype;rating;related;savedlistid\n';
-
-const writeProperties = fs.createWriteStream('propDataCass.csv');
-writeProperties.write(propHeader);
-propertiesGenerator(writeProperties, 1, () => {
-  console.log('properties data success:', new Date());
+const relatedHeader = 'mainpropid;relatedid\n';
+const writeRelated = fs.createWriteStream('cassRelated.csv');
+writeRelated.write(relatedHeader);
+relatedGenerator(writeRelated, 10000000, () => {
+  console.log('related data success:', new Date());
 });
