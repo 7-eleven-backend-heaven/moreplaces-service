@@ -32,7 +32,7 @@ class MorePlaces extends React.Component {
           <NavBar> {this.state.pageNum + 1} / 3    <PrevButton onClick={this.prevArrowClick}>&lt;</PrevButton><NextButton onClick={this.nextArrowClick}>&gt;</NextButton></NavBar>
         <Wrapper>
           {firstPage.map( (place) =>
-            <MorePlacesEntry key={place.propertyId} place={place} />
+            <MorePlacesEntry key={place.propertyid} place={place} />
           )}
         </Wrapper>
         </div>
@@ -44,7 +44,7 @@ class MorePlaces extends React.Component {
           <NavBar> {this.state.pageNum + 1} / 3    <PrevButton onClick={this.prevArrowClick}>&lt;</PrevButton><NextButton onClick={this.nextArrowClick}>&gt;</NextButton></NavBar>
         <Wrapper>
           {secondPage.map( (place) =>
-            <MorePlacesEntry key={place.propertyId} place={place} />
+            <MorePlacesEntry key={place.propertyid} place={place} />
           )}
         </Wrapper>
         </div>
@@ -56,7 +56,7 @@ class MorePlaces extends React.Component {
           <NavBar> {this.state.pageNum + 1} / 3    <PrevButton onClick={this.prevArrowClick}>&lt;</PrevButton><NextButton onClick={this.nextArrowClick}>&gt;</NextButton></NavBar>
         <Wrapper>
           {thirdPage.map( (place) =>
-            <MorePlacesEntry key={place.propertyId} place={place} />
+            <MorePlacesEntry key={place.propertyid} place={place} />
           )}
         </Wrapper>
         </div>

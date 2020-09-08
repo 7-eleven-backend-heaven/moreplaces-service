@@ -4,7 +4,7 @@ import axios from 'axios';
 import MorePlaces from './morePlaces.jsx';
 import styled from 'styled-components';
 
-let query = window.location.search || "?propertyId=0";
+const propertyId = window.location.search || "?propertyId=10";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getProperties();
+    // this.getProperties();
     this.getProperty();
   }
 
@@ -36,7 +36,8 @@ class App extends React.Component {
   }
 
   getProperty() {
-    axios.get(`/test1/${query}`)
+    //legacy: '/test1/${query}'
+    axios.get(`/property/${propertyId}`)
       .then(this.setProperty)
       .catch(console.log);
   }
