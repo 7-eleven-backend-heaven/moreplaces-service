@@ -28,7 +28,7 @@ let MorePlacesEntry = (props) => {
             <a href={`?propertyId=${props.place.propertyid}`}><Image src={props.place.imageurl} /></a>
           </ImageContainer>
           <div className="property-description">
-            <div>{props.place.propertytsype} • {props.place.numofrooms} beds</div>
+            <div>{props.place.propertytype} • {props.place.numofrooms} beds</div>
             <div><StarImg src={starImg} /> {props.place.rating} <NumRatings>({props.place.numofratings})</NumRatings></div>
             <div>{props.place.description}</div>
             <div><Price>${props.place.price}</Price> / night</div>
