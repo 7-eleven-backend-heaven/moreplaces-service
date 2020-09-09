@@ -11,8 +11,9 @@ export const options = {
 };
 
 export default function() {
-  const res = http.get('http://localhost:3009/property/200');
-  check(res, { 'status was 200': (r) => r.status == 200 });
+  const id = Math.floor(Math.random() * (10000000 - 1 + 1)) + 1;
+  const res = http.get(`http://localhost:3009/property/${id}`);
+  check(res, { 'status was 200': (r) => r.status === 200 });
 
   sleep(1);
 }
