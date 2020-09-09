@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const db = require('../database/index.js');
 
@@ -12,8 +13,8 @@ app.use(express.static(dist));
 app.use(express.json());
 
 // ROUTES
-app.get('/property', (req, res) => {
-  const id = req.query.propertyId;
+app.get('/property/:propertyId', (req, res) => {
+  const id = req.params.propertyId;
   db.query(`SELECT * from properties where (propertyid IN (select relatedid from related where mainpropid = ${id}))`, (err, results) => {
     if (err) {
       res.status(500).send(err);
@@ -25,11 +26,7 @@ app.get('/property', (req, res) => {
   });
 });
 
-app.post('/property/:propertyId');
-
-app.put('/property/:propertyId');
-
-app.delete('/property/:propertyId');
+app.post('/property');
 
 app.listen(PORT, (err) => {
   if (err) {

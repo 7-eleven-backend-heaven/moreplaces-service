@@ -4,7 +4,8 @@ import axios from 'axios';
 import MorePlaces from './morePlaces.jsx';
 import styled from 'styled-components';
 
-const propertyId = window.location.search || "?propertyId=10";
+const id = Math.floor(Math.random() * (10000000 - 1 + 1)) + 1;
+const propertyId = window.location.search || id;
 
 class App extends React.Component {
   constructor(props) {
