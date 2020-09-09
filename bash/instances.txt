@@ -1,0 +1,10 @@
+**** CONNECT TO EC2 INSTANCE:
+
+chmod 400 AWS_DOCKER.pem
+
+ssh -i "AWS_DOCKER.pem" ec2-user@ec2-54-241-239-42.us-west-1.compute.amazonaws.com
+
+-----------------------------------------
+
+**** RESTART POSTGRES:
+sudo systemctl restart postgresql.service

@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 let MorePlacesEntry = (props) => {
-  switch(props.place.isSuperHost) {
+  switch(props.place.issuperhost) {
     case true:
       return (
         <Card>
           <ImageContainer>
             <SuperHost><SuperHostCon>SUPERHOST</SuperHostCon></SuperHost>
             <HeartImg src={heartImg} />
-            <a href={`?propertyId=${props.place.propertyId}`}><Image src={props.place.img} /></a>
+            <a href={`?propertyId=${props.place.propertyid}`}><Image src={props.place.imageurl} /></a>
           </ImageContainer>
           <div className="property-description">
-            <div>{props.place.propertyType} • {props.place.numOfRooms} beds</div>
-            <div><StarImg src={starImg} /> {props.place.rating} <NumRatings>({props.place.numOfRatings})</NumRatings></div>
+            <div>{props.place.propertytype} • {props.place.numofrooms} beds</div>
+            <div><StarImg src={starImg} /> {props.place.rating} <NumRatings>({props.place.numofratings})</NumRatings></div>
             <div>{props.place.description}</div>
-            <div><Price>${props.place.price}</Price> / night</div>
+            <div><Price>{props.place.price}</Price> / night</div>
           </div>
         </Card>
       )
@@ -25,13 +25,13 @@ let MorePlacesEntry = (props) => {
         <Card>
           <ImageContainer>
             <HeartImg src={heartImg} />
-            <a href={`?propertyId=${props.place.propertyId}`}><Image src={props.place.img} /></a>
+            <a href={`?propertyId=${props.place.propertyid}`}><Image src={props.place.imageurl} /></a>
           </ImageContainer>
           <div className="property-description">
-            <div>{props.place.propertyType} • {props.place.numOfRooms} beds</div>
-            <div><StarImg src={starImg} /> {props.place.rating} <NumRatings>({props.place.numOfRatings})</NumRatings></div>
+            <div>{props.place.propertytype} • {props.place.numofrooms} beds</div>
+            <div><StarImg src={starImg} /> {props.place.rating} <NumRatings>({props.place.numofratings})</NumRatings></div>
             <div>{props.place.description}</div>
-            <div><Price>${props.place.price}</Price> / night</div>
+            <div><Price>{props.place.price}</Price> / night</div>
           </div>
         </Card>
       )
@@ -65,8 +65,8 @@ const ImageContainer = styled.div`
 `
 
 const Image = styled.img`
-  height: 100% || 120px;
-  width: 100%;
+  height: 180px;
+  width: 270px;
   border-radius: 8px;
   position: relative;
   z-index: 0;
