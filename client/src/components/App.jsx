@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
-import MorePlaces from './morePlaces.jsx';
 import styled from 'styled-components';
+import MorePlaces from './morePlaces.jsx';
 
-const id = Math.floor(Math.random() * (10000000 - 1 + 1)) + 1;
-const propertyId = window.location.search || id;
+const path = window.location.pathname.split('/');
+const propertyId = path[2];
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       properties: [],
       property: [],
-    },
+    };
 
     this.setProperties = this.setProperties.bind(this);
     this.getProperties = this.getProperties.bind(this);
@@ -37,7 +37,6 @@ class App extends React.Component {
   }
 
   getProperty() {
-    //legacy: '/test1/${query}'
     axios.get(`/property/${propertyId}`)
       .then(this.setProperty)
       .catch(console.log);
@@ -45,7 +44,6 @@ class App extends React.Component {
 
   setProperty(property) {
     this.setState({ property: property.data });
-    console.log(this.state.property)
   }
 
   render() {
@@ -56,17 +54,17 @@ class App extends React.Component {
           <MorePlaces places={this.state.property} />
         </Wrapper>
       </div>
-    )
+    );
   }
 }
 const Header = styled.h2`
   font-weight: 100px;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
 `;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
 
 export default App;

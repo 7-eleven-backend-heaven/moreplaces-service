@@ -2,7 +2,12 @@
 
 chmod 400 AWS_DOCKER.pem
 
-ssh -i "AWS_DOCKER.pem" ec2-user@ec2-3-101-34-244.us-west-1.compute.amazonaws.com
+ssh -i "AWS_DOCKER.pem" ec2-user@ec2-50-18-10-219.us-west-1.compute.amazonaws.com
+
+
+## NEW RELIC
+arn:aws:iam::467523161837:role/NewRelicInfrastructure-Integrations
+
 
 -----------------------------------------
 
@@ -14,8 +19,15 @@ sudo vim /var/lib/pgsql/data/pg_hba.conf
 ## ACCESS CONFIG SETTINGS
 sudo vim /var/lib/pgsql/data/postgresql.conf
 
-## RESTART POSTGRES:
-sudo systemctl restart postgresql.service
+## POSTGRES STATUS COMANDS:
+
+CHECK STATUS: service postgresql status
+
+START: sudo service postgresql start
+
+RESTART: sudo systemctl restart postgresql.service
+
+
 
 ## LOGIN TO POSTGRES:
 sudo su - postgres
