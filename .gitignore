@@ -5,3 +5,4 @@ savedData.csv
 cassRelated.csv
 client/dist/bundle.js
 newrelic_agent.log
+newrelic.js
