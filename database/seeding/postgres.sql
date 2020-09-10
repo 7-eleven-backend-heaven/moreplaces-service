@@ -23,32 +23,22 @@ CREATE TABLE properties (
   propertytype VARCHAR NOT NULL,
   rating DECIMAL,
   savedlistid INT DEFAULT NULL
-  -- CONSTRAINT fk_list
-  --   FOREIGN KEY (savedListId)
-  --     REFERENCES savedList(listId)
-  --     ON DELETE SET NULL
+
 );
 
 CREATE TABLE related (
   mainpropid INT,
   relatedid INT
-  -- CONSTRAINT fk_main
-  --   FOREIGN KEY (mainPropId)
-  --     REFERENCES properties(propertyId)
-  --     ON DELETE CASCADE,
-  -- CONSTRAINT fk_related
-  --   FOREIGN KEY (relatedId)
-  --     REFERENCES properties(propertyId)
-  --     ON DELETE CASCADE
+
 );
 
 SELECT NOW()::TIME;
 
-\COPY savedlists FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/savedData.csv' DELIMITER ',' CSV HEADER;
+\COPY savedlists FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/seeding/savedData.csv' DELIMITER ',' CSV HEADER;
 
-\COPY properties FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/propertiesData.csv' DELIMITER ',' CSV HEADER;
+\COPY properties FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/seeding/propertiesData.csv' DELIMITER ',' CSV HEADER;
 
-\COPY related FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/relatedData.csv' DELIMITER ',' CSV HEADER;
+\COPY related FROM '/Users/susie/Documents/hack-reactor/HRSF129/sdc-airbnb/moreplaces-service/database/seeding/relatedData.csv' DELIMITER ',' CSV HEADER;
 
 SELECT NOW()::TIME;
 
