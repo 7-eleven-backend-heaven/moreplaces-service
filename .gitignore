@@ -1,8 +1,8 @@
+.DS_Store
 node_modules
 propertiesData.csv
 relatedData.csv
 savedData.csv
 cassRelated.csv
-client/dist/bundle.js
 newrelic_agent.log
 newrelic.js
