@@ -6,8 +6,13 @@ ssh -i "AWS_DOCKER.pem" ec2-user@ec2-3-101-34-244.us-west-1.compute.amazonaws.co
 
 -----------------------------------------
 
-
 chmod 755 to allow permisssions
+
+## ACCESS AUTHENCATION SETTINGS
+sudo vim /var/lib/pgsql/data/pg_hba.conf
+
+## ACCESS CONFIG SETTINGS
+sudo vim /var/lib/pgsql/data/postgresql.conf
 
 ## RESTART POSTGRES:
 sudo systemctl restart postgresql.service
@@ -15,6 +20,9 @@ sudo systemctl restart postgresql.service
 ## LOGIN TO POSTGRES:
 sudo su - postgres
 psql -U postgres
+
+----------------------------------------
+
 
 ## RUN SCHEMA
 DROP DATABASE IF EXISTS moreplaces;

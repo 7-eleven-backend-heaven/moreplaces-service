@@ -11,7 +11,7 @@ pool.connect((err) => {
   if (err) {
     console.log('unsucessful connection to DB', err.stack);
   } else {
-    console.log('Successful connectin to DB');
+    console.log('Successful connection to DB');
   }
 });
 
