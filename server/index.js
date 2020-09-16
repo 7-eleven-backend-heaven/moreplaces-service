@@ -1,4 +1,5 @@
 require('newrelic');
+const compression = require('compression');
 const express = require('express');
 const db = require('../database/index.js');
 
@@ -9,6 +10,7 @@ const PORT = 3009;
 
 const dist = path.join(__dirname, '../client/dist');
 
+app.use(compression());
 app.use('/properties/:propertyId', express.static(dist));
 app.use(express.json());
 

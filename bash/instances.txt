@@ -1,9 +1,50 @@
 ## CONNECT TO EC2 INSTANCE:
 
 chmod 400 AWS_DOCKER.pem
+----------------------------------
+## SERVICE1: ssh -i "AWS_DOCKER.pem" ec2-user@ec2-54-177-24-3.us-west-1.compute.amazonaws.com
+IPv4: http://54.177.24.3/
 
-ssh -i "AWS_DOCKER.pem" ec2-user@ec2-50-18-10-219.us-west-1.compute.amazonaws.com
+## SERVICE2: ssh -i "AWS_DOCKER.pem" ec2-user@ec2-54-193-35-2.us-west-1.compute.amazonaws.com
+IPv4: 54.193.35.2
 
+3# SERVICE3: ssh -i "AWS_DOCKER.pem" ec2-user@ec2-54-176-67-188.us-west-1.compute.amazonaws.com
+IPv4: 54.176.67.188
+
+--------------------
+## NGINX:  ssh -i "AWS_DOCKER.pem" ec2-user@ec2-18-144-23-168.us-west-1.compute.amazonaws.com
+IPv4: 18.144.23.168
+
+
+CONFIG:
+events {}
+http {
+        upstream backend {
+                server 54.177.24.3:3009;
+                server 54.193.35.2:3009;
+        }
+     server {
+        listen 80;
+        location / {
+          proxy_pass http://backend;
+        }
+     }
+  }
+
+
+-----------------------
+
+## DB: ssh -i "AWS_DOCKER.pem" ec2-user@ec2-50-18-10-219.us-west-1.compute.amazonaws.com
+IPv4: http://50.18.10.219
+-----------------------------------------
+USE: nohup to run server in the background
+
+CHECK Port: fuser 3009/tcp
+KILL PORT: fuser 3009/tcp -k
+
+
+NODE PRODUCTION: "NODE_ENV=production node server/index.js"
+----------------------------------------
 
 ## NEW RELIC
 arn:aws:iam::467523161837:role/NewRelicInfrastructure-Integrations

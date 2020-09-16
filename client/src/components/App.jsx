@@ -22,7 +22,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.getProperties();
     this.getProperty();
   }
 

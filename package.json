@@ -22,6 +22,7 @@
   "homepage": "https://github.com/TomNguyen21/5erflies-hotel-more-places-service#readme",
   "dependencies": {
     "axios": "^0.19.2",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "mongodb": "^3.6.0",
